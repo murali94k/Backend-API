@@ -11,6 +11,5 @@ def root():
 
 
 if __name__ == "__main__":
-    port = os.environ.get('FLASK_PORT') or 8080
-    port = int(port)
-    uvicorn.run("app:app", host="localhost", port=port)
+
+    uvicorn.run("app:app", host="0.0.0.0", port=8000)
