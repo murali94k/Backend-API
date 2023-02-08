@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
+import os
 
 app = FastAPI()
 
@@ -10,4 +11,6 @@ def root():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="localhost", port=8006)
+    port = os.environ.get('FLASK_PORT') or 8080
+    port = int(port)
+    uvicorn.run("app:app", host="localhost", port=port)
