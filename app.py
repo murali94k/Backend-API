@@ -1,15 +1,24 @@
 from fastapi import FastAPI
 import uvicorn
-import os
+from config import config
+from logger import get_logger
 
 app = FastAPI()
+logger = get_logger(__name__)
 
 
-@app.get("/health")
+@app.get("/")
 def root():
+    logger.debug("Fetching Root Endpoint")
     return {"message": "Hello World"}
 
 
-if __name__ == "__main__":
+@app.get("/version")
+def version():
+    logger.debug("Fetching Version Endpoint")
+    return {"App Name": config["APP_NAME"], "App Version": config["BUILD_VERSION"]}
 
-    uvicorn.run("app:app", host="0.0.0.0", port=8000)
+
+if __name__ == "__main__":
+    logger.debug("Starting App @ port 8000 .... ")
+    uvicorn.run("app:app", host="localhost", port=8000)
