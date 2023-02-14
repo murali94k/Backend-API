@@ -2,6 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 from config import config
 from logger import get_logger
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 logger = get_logger(__name__)
@@ -16,9 +17,5 @@ def root():
 @app.get("/version")
 def version():
     logger.debug("Fetching Version Endpoint")
-    return {"App Name": config["APP_NAME"], "App Version": config["BUILD_VERSION"]}
+    return {"message": "App Version : {}".format(config["BUILD_VERSION"])}
 
-
-if __name__ == "__main__":
-    logger.debug("Starting App @ port 8000 .... ")
-    uvicorn.run("app:app", host="localhost", port=8000)

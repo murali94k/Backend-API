@@ -1,23 +1,23 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: my-python
+  name: app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: python-app
+      app: app-pod
   template:
     metadata:
       labels:
-        app: python-app
+        app: app-pod
     spec:
       containers:
-        - name: my-python
-          image: python-image:latest
+        - name: app-container
+          image: devops-app-image:latest
           ports:
-            - name: http
-              containerPort: 8000
+            - name: app-container-port
+              containerPort: 8080
               protocol: TCP
           resources:
             limits:
@@ -27,12 +27,12 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: my-python
+  name: app-service
 spec:
 ports:
-  - name: http-8000
-    port: 8000
+  - name: app-service-port
+    port: 8080
     protocol: TCP
-    targetPort: 8000
+    targetPort: 8080
 selector:
-  app: python-app
+  app: demo-app
