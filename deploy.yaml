@@ -17,7 +17,7 @@ spec:
           image: devops-app-image:latest
           ports:
             - name: app-container-port
-              containerPort: 8080
+              containerPort: 8081
               protocol: TCP
           resources:
             limits:
@@ -31,8 +31,8 @@ metadata:
 spec:
 ports:
   - name: app-service-port
-    port: 8080
+    port: 8081
     protocol: TCP
-    targetPort: 8080
+    targetPort: 8081
 selector:
   app: demo-app
