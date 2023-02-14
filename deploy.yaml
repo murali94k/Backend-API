@@ -16,7 +16,7 @@ spec:
         - name: app-container
           image: devops-app-image:latest
           ports:
-            - name: app-container-port
+            - name: app-pod-port
               containerPort: 8081
               protocol: TCP
           resources:
@@ -30,7 +30,7 @@ metadata:
   name: app-service
 spec:
 ports:
-  - name: app-service-port
+  - name: app-ser-port
     port: 8081
     protocol: TCP
     targetPort: 8081
