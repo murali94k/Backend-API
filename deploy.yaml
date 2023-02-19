@@ -35,3 +35,24 @@ ports:
     targetPort: 8081
 selector:
   app: demo-app
+
+---
+kind: BuildConfig
+metadata:
+  name: devops-app
+  labels:
+    app: devops-app
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/murali94k/Openshift_Devops.git
+    contextDir: Openshift_Devops
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile    # Look for Dockerfile in: gitUri/contextDir/dockerfilePath
+  output:
+    to:
+      kind: ImageStreamTag
+      name: devops-app:latest
