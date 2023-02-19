@@ -8,10 +8,21 @@ app = FastAPI()
 logger = get_logger(__name__)
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def root():
     logger.debug("Fetching Root Endpoint")
-    return {"message": "Hello World"}
+    return """
+        <html>
+            <head>
+                <title>Devops Demo</title>
+            </head>
+            <body>
+                <h1>Hello World ! </h1>
+                <h3>Welcome to Devops Demo </h3
+                <h4>Version {} </h4>
+            </body>
+        </html>
+        """.format(config["BUILD_VERSION"])
 
 
 @app.get("/version")
@@ -19,3 +30,6 @@ def version():
     logger.debug("Fetching Version Endpoint")
     return {"message": "App Version : {}".format(config["BUILD_VERSION"])}
 
+
+if __name__ == "__main__":
+    uvicorn.run("app:app", host="localhost", port=8011)
