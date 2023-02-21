@@ -1,0 +1,20 @@
+kind: BuildConfig
+apiVersion: apiextensions.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    {{- include "charts.labels" . | nindent 4}}
+spec:
+  source:
+    type: {{ .Values.source.type }}
+    git:
+      uri: {{ .Values.source.uri }}
+    contextDir: {{ .Values.source.contextdir }}
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile    # Look for Dockerfile in: gitUri/contextDir/dockerfilePath
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

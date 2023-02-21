@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apiextensions.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    {{- include "charts.labels" . | nindent 4}}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "charts.selectorLabels" . | nindent 6}}
+  template:
+    metadata:
+      labels:
+        {{- include "charts.selectorLabels" . | nindent 8}}
+    spec:
+      containers:
+        - name: {{ .Values.container.name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: app-pod-port
+              containerPort: {{ .Values.service.targetport }}
+              protocol: TCP
+          resources:
+            limits:
+              memory: {{ .Values.resources.limits.memory | quote}}
+              cpu: {{ .Values.resources.limits.cpu | quote }}
