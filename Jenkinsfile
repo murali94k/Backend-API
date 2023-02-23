@@ -1,7 +1,11 @@
 pipeline {
     agent  any
-    triggers {
-        pollSCM '* * * * *'
+  stages {
+    stage('Checkout') {
+      steps {
+        deleteDir()
+        checkout scm
+      }
     }
     stages {
         stage('Build') {
