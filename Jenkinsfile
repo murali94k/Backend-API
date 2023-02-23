@@ -9,6 +9,7 @@ pipeline {
             deleteDir()
             checkout scm
            }
+        }
 
         stage('Build') {
             steps {
