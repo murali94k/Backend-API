@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 name: devops-app
 description: A Helm chart for Kubernetes
 
