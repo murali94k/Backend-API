@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/python-39:latest
+FROM python:3.6
 
 # Copy the dependencies file to the working directory
 COPY ./requirements.txt .
