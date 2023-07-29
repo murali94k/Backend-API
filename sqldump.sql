@@ -11,3 +11,4 @@ CREATE TABLE `users` (
     PRIMARY KEY (`user_id`),
     UNIQUE KEY `unique_users` (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO users(user_name, user_email, user_password) VALUES ('user1','user1@gmail.com','pass1');

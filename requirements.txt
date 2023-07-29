@@ -10,3 +10,4 @@ starlette
 typing_extensions
 uvicorn
 confuse
+mysql-connector-python
