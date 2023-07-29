@@ -1,0 +1,36 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: devops-demo-app
+  name: devops-demo-app
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'devops-demo-app:latest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      ref: master
+      uri: 'https://github.com/murali94k/Openshift_Devops.git'
+    type: Git
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: "DockerImage"
+        name: 'registry.access.redhat.com/ubi9/python-36:latest'
+        namespace: openshift
+  triggers:
+    - type: ConfigChange
+    - generic:
+        secret: 06feb0987c6cbb79
+      type: Generic
+    - github:
+        secret: 8b78bb8e6cbfde95
+      type: GitHub
+status:
+  lastVersion: 8
