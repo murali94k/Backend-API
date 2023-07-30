@@ -3,10 +3,9 @@ kind: Service
 metadata:
   name: backend-app-service
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-    - protocol: TCP
-      port: 8080
+    - port: 8080
       targetPort: 8080
   selector:
     app: backend-app

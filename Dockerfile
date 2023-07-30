@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.7.8
 
 # Copy the dependencies file to the working directory
 COPY ./requirements.txt .
