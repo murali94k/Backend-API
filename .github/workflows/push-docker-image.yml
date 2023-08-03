@@ -1,8 +1,8 @@
 name: Build and push Docker Image
 
 on:
-  push:
-    branches: [ "master", "main" ]
+  release:
+    types: [published]
 
 jobs:
 
