@@ -16,7 +16,7 @@ jobs:
       run: |
         sha=${{ github.sha }}"
         sha8=${sha:0:8}
-        $sha8
+        echo $sha8
         echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login -u "murali94k" --password-stdin
         docker build -t murali94k/backend_app .
         docker push murali94k/backend_app
