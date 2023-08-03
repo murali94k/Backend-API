@@ -15,8 +15,7 @@ jobs:
     - name: Build the Docker image and push to murali94k docker repo
       run: |
         sha=${{ github.sha }}
-        sha8=${sha:0:8}
-        echo $sha8
+        echo ${sha:0:8}
         echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login -u "murali94k" --password-stdin
-        docker build -t murali94k/backend_app .
-        docker push murali94k/backend_app
+        docker build -t murali94k/backend_app:${sha:0:8} .
+        docker push murali94k/backend_app:${sha:0:8}
