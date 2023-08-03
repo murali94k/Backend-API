@@ -2,7 +2,7 @@ name: Build and push Docker Image
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "master", "main" ]
 
 jobs:
 
@@ -15,7 +15,6 @@ jobs:
     - name: Build the Docker image and push to murali94k docker repo
       run: |
         echo ${{ github.sha }}
-        echo ${{GITHUB_SHA}}
         echo ${{ steps.vars.outputs.tag }}
         echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login -u "murali94k" --password-stdin
         docker build -t murali94k/backend_app .
