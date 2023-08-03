@@ -14,8 +14,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image and push to murali94k docker repo
       run: |
-        echo ${{ github.sha }}
-        echo ${{ steps.vars.outputs.tag }}
+        echo "sha=${{ github.sha }}"
+        echo ${sha:0:4}
         echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login -u "murali94k" --password-stdin
         docker build -t murali94k/backend_app .
         docker push murali94k/backend_app
