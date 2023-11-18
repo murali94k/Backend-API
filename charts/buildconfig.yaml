@@ -6,17 +6,17 @@ metadata:
   labels:
     app: demo-backend
 spec:
+  nodeSelector: null
   output:
     to:
       kind: ImageStreamTag
-      name: 'demo-backend:latest'
+      name: 'backend-api:latest'
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
   strategy:
-    type: Source
-    sourceStrategy:
-      from:
-        kind: ImageStreamTag
-        namespace: openshift
-        name: 'python:3.9-ubi8'
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
   source:
     type: Git
     git:
@@ -24,11 +24,9 @@ spec:
   triggers:
     - type: GitHub
       github:
-        secret: yxbDF35SQY9OgAdvvy4s
+        secret: "dummy-secret" 
     - type: Generic
       generic:
-        secret: IMKHURpq6wAQpHEiHYsL
+        secret: "dummy-secret" 
     - type: ConfigChange
-    - type: ImageChange
-      imageChange: {}
   runPolicy: Serial
