@@ -1,5 +1,5 @@
 APP_NAME: "DevOps Demo App"
-BUILD_VERSION: "2.0"
+BUILD_VERSION: "2.1"
 
 MYSQL_HOST: "localhost"
 MYSQL_PORT: "3306"
