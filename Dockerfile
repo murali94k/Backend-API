@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # By default, container listen on port 8081
-EXPOSE 8080
+EXPOSE 8090
 
 # Specify the command to run on container start
-CMD [ "uvicorn", "app:app", "--port", "8080", "--host", "0.0.0.0" ]
+CMD [ "uvicorn", "app:app", "--port", "8090", "--host", "0.0.0.0" ]
