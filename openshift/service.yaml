@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-backend
+  namespace: demo-project
+  labels:
+    app: demo-backend
+spec:
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8090
+      targetPort: 8090
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    deployment: demo-backend
